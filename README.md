@@ -1,1 +1,2 @@
-## 第一次python实战
+### python实战_作业1
+./python_practice/work1_fight_game
