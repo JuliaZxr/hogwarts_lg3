@@ -39,3 +39,4 @@ class Game():
 
 game = Game(2000, 200, 1500, 300)
 game.fight()
+
