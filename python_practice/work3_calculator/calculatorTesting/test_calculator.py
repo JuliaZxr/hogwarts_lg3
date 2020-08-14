@@ -28,17 +28,30 @@ pytest命名规则：
     5、python的浮点数在进行计算时，使用round(xxx,n)代表对xxx取n位小数
 
 """
+import yaml
+
 from python_practice.work3_calculator.calculatorCode.calculator import Calculator
 import pytest
+
+
+# 从.yml文件中读取测试数据
+def get_datas():
+    # 打开文件，如果是有中文的文件，需要加encoding=”utf"
+    with open("./datas/calc.yml", encoding="utf-8") as f:
+        datas = yaml.safe_load(f)
+        mydatas = datas["add"]["mydatas"]
+        myids = datas["add"]["myids"]
+    return [mydatas, myids]
 
 
 class TestCalculator:
     # 类级setup_class.teardown_class（在类中）,只在类中前后运行一次
     def setup_class(self):
         self.calc = Calculator()
+        print("\nsetup_calss在类开始时运行一次")
 
     def teardown_class(self):
-        print()
+        print("teardown_calss在类结束时运行一次")
 
     # 方法级setup_method.teardown_method（在类中）(等同于setup、teardown),只在方法始末运行一次
     def setup(self):
@@ -48,18 +61,38 @@ class TestCalculator:
         print("-结束计算-")
 
     # 加法-测试用例参数化
+
+    """
+    通过传参传递测试用例
+    """
+    # @pytest.mark.parametrize("a,b,expected", [
+    #     (1, 1, 2),
+    #     (-1, -1, -2),
+    #     (0, 0, 0),
+    #     (0.1, 0.1, 0.2),
+    #     (999, 111, 1110)
+    # ], ids=["整数", "负数", "零", "小数", "大数"])
+
+    """
+    通过get_datas去文件中读取测试用例
+    """
+    @pytest.mark.parametrize("a,b,expected", get_datas()[0], ids =get_datas()[1])
+
+    @pytest.mark.add
+    def test_add(self, a, b, expected):
+        # calc = Calculator()
+        print("测试加法-正确用例")
+        result = self.calc.add(a, b)
+        assert result == expected
+
     @pytest.mark.parametrize("a,b,expected", [
-        (1, 1, 2),
-        (-1, -1, -2),
-        (0, 0, 0),
-        (0.1, 0.1, 0.2),
-        (999, 111, 1110),
         # 错误的用例
         (-1, 1, 1)
     ])
-    def test_add(self, a, b, expected):
+    @pytest.mark.add
+    def test_addMistake(self, a, b, expected):
         # calc = Calculator()
-        print("测试加法")
+        print("测试加法-错误用例")
         result = self.calc.add(a, b)
         assert result == expected
 
@@ -69,13 +102,23 @@ class TestCalculator:
         (-1, -1, 0),
         (-1, 0, -1),
         (0.3, 0.1, 0.2),
-        (999, 111, 888),
+        (999, 111, 888)
+    ])
+    @pytest.mark.subtract
+    def test_subtract(self, a, b, expected):
+        # calc = Calculator()
+        print("测试减法-正确用例")
+        result = round(self.calc.subtract(a, b), 1)
+        assert result == expected
+
+    @pytest.mark.parametrize("a,b,expected", [
         # 错误的用例
         (-1, 1, 1)
     ])
-    def test_subtract(self, a, b, expected):
+    @pytest.mark.subtract
+    def test_subtractMistake(self, a, b, expected):
         # calc = Calculator()
-        print("测试减法")
+        print("测试减法-错误用例")
         result = round(self.calc.subtract(a, b), 1)
         assert result == expected
 
@@ -85,13 +128,23 @@ class TestCalculator:
         (-1, -1, 1),
         (-1, 0, 0),
         (0.3, 0.1, 0.03),
-        (999, 111, 110889),
+        (999, 111, 110889)
+    ])
+    @pytest.mark.multiply
+    def test_multiply(self, a, b, expected):
+        # calc = Calculator()
+        print("测试乘法-正确用例")
+        result = self.calc.multiply(a, b)
+        assert result == expected
+
+    @pytest.mark.parametrize("a,b,expected", [
         # 错误的用例
         (-1, 1, 1)
     ])
-    def test_multiply(self, a, b, expected):
+    @pytest.mark.multiply
+    def test_multiplyMistake(self, a, b, expected):
         # calc = Calculator()
-        print("测试乘法")
+        print("测试乘法-错误用例")
         result = self.calc.multiply(a, b)
         assert result == expected
 
@@ -100,13 +153,23 @@ class TestCalculator:
         (0, 1, 0),
         (-1, -1, 1),
         (0.3, 0.1, 3),
-        (999, 111, 9),
+        (999, 111, 9)
+    ])
+    @pytest.mark.divide
+    def test_divide(self, a, b, expected):
+        # calc = Calculator()
+        print("测试除法-正确用例")
+        result = round(self.calc.divide(a, b), 1)
+        assert result == expected
+
+    @pytest.mark.parametrize("a,b,expected", [
         # 错误的用例
         (-1, 0, 1),
         (-1, 1, 1)
     ])
-    def test_divide(self, a, b, expected):
+    @pytest.mark.divide
+    def test_divideMistake(self, a, b, expected):
         # calc = Calculator()
-        print("测试除法")
+        print("测试除法-错误用例")
         result = round(self.calc.divide(a, b), 1)
         assert result == expected
