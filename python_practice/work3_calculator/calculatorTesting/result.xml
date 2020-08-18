@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="5" hostname="DESKTOP-KH27D5B" name="pytest" skipped="0" tests="24" time="0.100" timestamp="2020-08-13T23:21:46.945427"><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="50" name="test_add[1-1-2]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="50" name="test_add[-1--1--2]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="50" name="test_add[0-0-0]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="50" name="test_add[0.1-0.1-0.2]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="50" name="test_add[999-111-1110]" time="0.000"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="50" name="test_add[-1-1-1]" time="0.001"><failure message="assert 0 == 1">self = &lt;python_practice.work3_calculator.calculatorTesting.test_calculator.TestCalculator object at 0x000002531613D470&gt;, a = -1, b = 1, expected = 1
+
+    @pytest.mark.parametrize(&quot;a,b,expected&quot;, [
+        (1, 1, 2),
+        (-1, -1, -2),
+        (0, 0, 0),
+        (0.1, 0.1, 0.2),
+        (999, 111, 1110),
+        # 错误的用例
+        (-1, 1, 1)
+    ])
+    @pytest.mark.add
+    def test_add(self, a, b, expected):
+        # calc = Calculator()
+        print(&quot;测试加法&quot;)
+        result = self.calc.add(a, b)
+&gt;       assert result == expected
+E       assert 0 == 1
+
+test_calculator.py:65: AssertionError</failure></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="67" name="test_subtract[1-1-0]" time="0.002"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="67" name="test_subtract[-1--1-0]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="67" name="test_subtract[-1-0--1]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="67" name="test_subtract[0.3-0.1-0.2]" time="0.000"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="67" name="test_subtract[999-111-888]" time="0.002"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="67" name="test_subtract[-1-1-1]" time="0.000"><failure message="assert -2 == 1">self = &lt;python_practice.work3_calculator.calculatorTesting.test_calculator.TestCalculator object at 0x0000025316167128&gt;, a = -1, b = 1, expected = 1
+
+    @pytest.mark.parametrize(&quot;a,b,expected&quot;, [
+        (1, 1, 0),
+        (-1, -1, 0),
+        (-1, 0, -1),
+        (0.3, 0.1, 0.2),
+        (999, 111, 888),
+        # 错误的用例
+        (-1, 1, 1)
+    ])
+    @pytest.mark.subtract
+    def test_subtract(self, a, b, expected):
+        # calc = Calculator()
+        print(&quot;测试减法&quot;)
+        result = round(self.calc.subtract(a, b), 1)
+&gt;       assert result == expected
+E       assert -2 == 1
+
+test_calculator.py:82: AssertionError</failure></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="84" name="test_multiply[1-1-1]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="84" name="test_multiply[-1--1-1]" time="0.000"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="84" name="test_multiply[-1-0-0]" time="0.002"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="84" name="test_multiply[0.3-0.1-0.03]" time="0.000"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="84" name="test_multiply[999-111-110889]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="84" name="test_multiply[-1-1-1]" time="0.000"><failure message="assert -1 == 1">self = &lt;python_practice.work3_calculator.calculatorTesting.test_calculator.TestCalculator object at 0x0000025316187C18&gt;, a = -1, b = 1, expected = 1
+
+    @pytest.mark.parametrize(&quot;a,b,expected&quot;, [
+        (1, 1, 1),
+        (-1, -1, 1),
+        (-1, 0, 0),
+        (0.3, 0.1, 0.03),
+        (999, 111, 110889),
+        # 错误的用例
+        (-1, 1, 1)
+    ])
+    @pytest.mark.multiply
+    def test_multiply(self, a, b, expected):
+        # calc = Calculator()
+        print(&quot;测试乘法&quot;)
+        result = self.calc.multiply(a, b)
+&gt;       assert result == expected
+E       assert -1 == 1
+
+test_calculator.py:99: AssertionError</failure></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="101" name="test_divide[0-1-0]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="101" name="test_divide[-1--1-1]" time="0.001"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="101" name="test_divide[0.3-0.1-3]" time="0.002"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="101" name="test_divide[999-111-9]" time="0.002"></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="101" name="test_divide[-1-0-1]" time="0.000"><failure message="ZeroDivisionError: division by zero">self = &lt;python_practice.work3_calculator.calculatorTesting.test_calculator.TestCalculator object at 0x0000025316187630&gt;, a = -1, b = 0, expected = 1
+
+    @pytest.mark.parametrize(&quot;a,b,expected&quot;, [
+        (0, 1, 0),
+        (-1, -1, 1),
+        (0.3, 0.1, 3),
+        (999, 111, 9),
+        # 错误的用例
+        (-1, 0, 1),
+        (-1, 1, 1)
+    ])
+    @pytest.mark.divide
+    def test_divide(self, a, b, expected):
+        # calc = Calculator()
+        print(&quot;测试除法&quot;)
+&gt;       result = round(self.calc.divide(a, b), 1)
+
+test_calculator.py:115: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;python_practice.work3_calculator.calculatorCode.calculator.Calculator object at 0x000002531611BB70&gt;, a = -1, b = 0
+
+    def divide(self, a, b):
+&gt;       return a / b
+E       ZeroDivisionError: division by zero
+
+..\calculatorCode\calculator.py:27: ZeroDivisionError</failure></testcase><testcase classname="test_calculator.TestCalculator" file="test_calculator.py" line="101" name="test_divide[-1-1-1]" time="0.001"><failure message="assert -1.0 == 1">self = &lt;python_practice.work3_calculator.calculatorTesting.test_calculator.TestCalculator object at 0x0000025316192B38&gt;, a = -1, b = 1, expected = 1
+
+    @pytest.mark.parametrize(&quot;a,b,expected&quot;, [
+        (0, 1, 0),
+        (-1, -1, 1),
+        (0.3, 0.1, 3),
+        (999, 111, 9),
+        # 错误的用例
+        (-1, 0, 1),
+        (-1, 1, 1)
+    ])
+    @pytest.mark.divide
+    def test_divide(self, a, b, expected):
+        # calc = Calculator()
+        print(&quot;测试除法&quot;)
+        result = round(self.calc.divide(a, b), 1)
+&gt;       assert result == expected
+E       assert -1.0 == 1
+
+test_calculator.py:116: AssertionError</failure></testcase></testsuite></testsuites>
