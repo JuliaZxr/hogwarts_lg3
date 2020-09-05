@@ -1,8 +1,7 @@
 #!/usr/bin/env pytho
 # -*- coding: utf-8 -*-
-from selenium.webdriver.common.by import By
 
-from work9_testFramework.page.base_page import BasePage
+from python_practice.work9_testFramework.page.base_page import BasePage
 
 """
 DemoPage是定义个一个需要测试的页面，继承与基类BasePage

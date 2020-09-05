@@ -26,4 +26,4 @@
 ./python_practice/work7_appiumTest/conftest.py
 
 ## python实战_作业9-雪球-appium-搜索股票-搭建测试框架-po数据驱动
-./python_practice/work7_appiumTest/test_appiumDelContact.py
+./python_practice/work9_testFramework

@@ -10,8 +10,8 @@
 """
 import pytest
 
-from work9_testFramework.page.demo_page import DemoPage
-from work9_testFramework.utils.file_util import FileUtil
+from python_practice.work9_testFramework.page.demo_page import DemoPage
+from python_practice.work9_testFramework.utils.file_util import FileUtil
 
 
 class TestDemo:
