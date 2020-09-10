@@ -11,7 +11,6 @@
 import pytest
 
 from python_practice.work10_testFrameworkOptimization.page.base_page import BasePage
-from python_practice.work10_testFrameworkOptimization.page.demo_page import DemoPage
 from python_practice.work10_testFrameworkOptimization.page.common_page import CommonPage
 from python_practice.work10_testFrameworkOptimization.utils.file_util import FileUtil
 
@@ -27,36 +26,15 @@ class TestDemo:
         self.app = BasePage()
         self.app.start()
 
-        # 初始化一个login页面
-        self.demopage = DemoPage(self.po_file)
-
-    def setup(self):
-        pass
-
-    def teardown(self):
-        self.demopage.back()
-
     def teardown_class(self):
-        self.demopage.stop()
+        self.app.stop()
 
-    # TODO：测试数据的数据驱动
-    @pytest.mark.parametrize("username, password", [
-        ("user1", "pwd1"),
-        ("user2", "pwd2")
-    ])
-    def test_login(self, username, password):
-        # TODO:登录测试步骤的数据驱动
-        self.demopage.loginIn(username, password)
-        assert 1 == 1
-
-    # @pytest.mark.parametrize("keyword", [
-    #     "alibaba",
-    #     "baidu",
-    #     "jd"
-    # ])
+    # 用common_page代替demo_page
     @pytest.mark.parametrize(data["keys"], data["values"])
-    def test_search(self, keyword1):
-        self.demopage.search(keyword1)
+    def test_search_common_page(self, keyword1):
+        demo = CommonPage(self.po_file)
+        demo.search(keyword3=keyword1)
+        demo.back()
 
     def test_loginByPassword(self):
         # 定义login_page的po_file文件路径
