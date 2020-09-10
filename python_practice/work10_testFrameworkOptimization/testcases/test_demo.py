@@ -12,7 +12,7 @@ import pytest
 
 from python_practice.work10_testFrameworkOptimization.page.base_page import BasePage
 from python_practice.work10_testFrameworkOptimization.page.demo_page import DemoPage
-from python_practice.work10_testFrameworkOptimization.page.login_page import LoginPage
+from python_practice.work10_testFrameworkOptimization.page.common_page import CommonPage
 from python_practice.work10_testFrameworkOptimization.utils.file_util import FileUtil
 
 
@@ -62,6 +62,6 @@ class TestDemo:
         # 定义login_page的po_file文件路径
         po_file = "../datas/page_login.yml"
         # 初始化一个login页面，并传参对应的测试步骤po_file文件路径
-        login = LoginPage(po_file)
+        login = CommonPage(po_file)
         # 调用login页面的login_by_password方法，并完成传参
-        login.login_by_password("13322226666", "111111")
+        login.login_by_password(username = "13322226666", password = "111111")

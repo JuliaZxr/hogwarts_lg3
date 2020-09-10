@@ -15,6 +15,8 @@ from appium.webdriver import WebElement
 from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
+from python_practice.work10_testFrameworkOptimization.page.log import log
+
 
 class BasePage:
     _driver: WebDriver = None
@@ -61,6 +63,7 @@ class BasePage:
         self._current_element = self._driver.find_element(*xpath)
 
     def po_runSteps(self, po_method, **kwargs):
+        log.debug(f"po_runSteps {po_method} {kwargs}")
         # 读取yml文件
         """
             page_demo.yml是对应login_page页面的一个数据驱动文件
