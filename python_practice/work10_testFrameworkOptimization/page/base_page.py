@@ -24,7 +24,8 @@ class BasePage:
         if po_file is not None:
             self._po_file = po_file
 
-    def start(self):
+    @classmethod
+    def start(cls):
         caps = {
             "platformName": "android",
             "deviceName": "127.0.0.1:7555",
@@ -32,16 +33,20 @@ class BasePage:
             "appActivity": ".view.WelcomeActivityAlias",
             "noReset": "true"
         }
-        self._driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", caps)
-        self._driver.implicitly_wait(10)
-        return self
+        cls._driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", caps)
+        cls._driver.implicitly_wait(10)
+        return cls
 
     def stop(self):
-        self._driver.quit()
+        BasePage._driver.quit()
 
     # 查找元素方法，并return
     def find(self, by):
-        self._current_element = self._driver.find_element(*by)
+        if by[0] == "text":
+            by_new = (By.XPATH, f"//*[contains(@text, '{by[1]}')]")
+        elif by[0] == "id":
+            by_new = by
+        self._current_element = BasePage._driver.find_element(*by_new)
         return self
 
     def click(self):
@@ -88,10 +93,10 @@ class BasePage:
                     # step.keyd() 返回的是一个列表，内容是yml文件中的每一个key值
                     # 然后再去循环 判断每一步是具体的id、 click、send_keys操作，再继续下一步操作
                     for key in step.keys():
-                        if key == "id":
+                        if key in ["id", "text"]:
                             # step[key]代表的就是每一个id、 click、send_keys对应的具体值
                             # 因为find（）方法中传递的是一个元组，所以在使用的是也需要是一个元组
-                            locator = (By.ID, step[key])
+                            locator = (key, step[key])
                             self.find(locator)
                         elif key == "xpath":
                             locator = (By.XPATH, step[key])

@@ -10,7 +10,9 @@
 """
 import pytest
 
+from python_practice.work10_testFrameworkOptimization.page.base_page import BasePage
 from python_practice.work10_testFrameworkOptimization.page.demo_page import DemoPage
+from python_practice.work10_testFrameworkOptimization.page.login_page import LoginPage
 from python_practice.work10_testFrameworkOptimization.utils.file_util import FileUtil
 
 
@@ -21,10 +23,12 @@ class TestDemo:
     data = FileUtil.from_file(testdata_file_search)
 
     def setup_class(self):
+        # 启动app
+        self.app = BasePage()
+        self.app.start()
+
         # 初始化一个login页面
         self.demopage = DemoPage(self.po_file)
-        # 启动app
-        self.demopage.start()
 
     def setup(self):
         pass
@@ -53,3 +57,11 @@ class TestDemo:
     @pytest.mark.parametrize(data["keys"], data["values"])
     def test_search(self, keyword1):
         self.demopage.search(keyword1)
+
+    def test_loginByPassword(self):
+        # 定义login_page的po_file文件路径
+        po_file = "../datas/page_login.yml"
+        # 初始化一个login页面，并传参对应的测试步骤po_file文件路径
+        login = LoginPage(po_file)
+        # 调用login页面的login_by_password方法，并完成传参
+        login.login_by_password("13322226666", "111111")

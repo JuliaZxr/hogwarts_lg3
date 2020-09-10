@@ -1,0 +1,13 @@
+login_by_password:
+  - id: user_profile_icon
+  - click: []
+  - id: com.xueqiu.android:id/iv_login_phone
+  - click: []
+  - id: com.xueqiu.android:id/tv_login_with_account
+  - click: []
+  - id: com.xueqiu.android:id/login_account
+  - send_keys: ${username}
+  - id: com.xueqiu.android:id/login_password
+  - send_keys: ${password}
+  - text: 登录
+  - click: []
