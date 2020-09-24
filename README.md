@@ -30,3 +30,6 @@
 
 ## python实战_作业10-雪球-appium-搜索股票、登录-测试框架优化
 ./python_practice/work10_testFramework
+
+## python实战_作业11-企业微信-接口框架-部门管理测试
+./python_practice/work11_apiTestFrameworkRequest
