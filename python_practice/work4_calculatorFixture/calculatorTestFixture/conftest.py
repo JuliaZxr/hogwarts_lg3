@@ -29,6 +29,9 @@ def get_calc():
     print("-结束计算-")
 
 
+"""
+通过get_datas去文件中读取测试用例
+"""
 # 从.yml文件中读取测试数据
 def get_datas():
     # os.path.dirname(__file__) 代表当前这个文件的路径
@@ -65,7 +68,41 @@ def get_datas():
             [divideMistake_mydatas, mdivideMistake_myids]]
 
 
+# 使用带参数传递的fixture装饰方法 去参数化每一个加减乘除方法
 @pytest.fixture(params=get_datas()[0][0], ids=get_datas()[0][1])
-def get_1Datas(request):
+def get_addData(request):
     return request.param
 
+@pytest.fixture(params=get_datas()[1][0], ids=get_datas()[1][1])
+def get_addMistakeData(request):
+    return request.param
+
+
+@pytest.fixture(params=get_datas()[2][0], ids=get_datas()[2][1])
+def get_subtractData(request):
+    return request.param
+
+
+@pytest.fixture(params=get_datas()[3][0], ids=get_datas()[3][1])
+def get_subtractMistakeData(request):
+    return request.param
+
+
+@pytest.fixture(params=get_datas()[4][0], ids=get_datas()[4][1])
+def get_multiplyData(request):
+    return request.param
+
+
+@pytest.fixture(params=get_datas()[5][0], ids=get_datas()[5][1])
+def get_multiplyMistakeData(request):
+    return request.param
+
+
+@pytest.fixture(params=get_datas()[6][0], ids=get_datas()[6][1])
+def get_divideData(request):
+    return request.param
+
+
+@pytest.fixture(params=get_datas()[7][0], ids=get_datas()[7][1])
+def get_divideMistakeData(request):
+    return request.param
