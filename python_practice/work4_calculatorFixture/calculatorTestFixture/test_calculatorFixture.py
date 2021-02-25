@@ -39,6 +39,7 @@ import allure
 class TestCalculator:
     # 加法-测试用例参数化
     # 因为使用带参数的fixture装饰方法来参数化，所以在每一个测试用例方法的参数中加上对应参数化的方法名，eg：get_addData，参数化方法中具体某一个值可以用[x]下标来表示
+    @pytest.mark.run(order=1)
     @pytest.mark.add
     @allure.story("计算器-加法-正确用例")
     def test_add(self, get_calc, get_addData):
@@ -46,6 +47,7 @@ class TestCalculator:
         result = get_calc.add(get_addData[0], get_addData[1])
         assert result == get_addData[2]
 
+    @pytest.mark.run(order=2)
     @pytest.mark.add
     @allure.story("计算器-加法-错误用例")
     def test_addMistake(self, get_calc, get_addMistakeData):
@@ -54,43 +56,8 @@ class TestCalculator:
         result = get_calc.add(get_addMistakeData[0], get_addMistakeData[1])
         assert result == get_addMistakeData[2]
 
-    # 减法-测试用例参数化
-
-    @pytest.mark.subtract
-    @allure.story("计算器-减法-正确用例")
-    def test_subtract(self, get_calc, get_subtractData):
-        # calc = Calculator()
-        print("测试减法-正确用例")
-        result = round(get_calc.subtract(get_subtractData[0], get_subtractData[1]), 1)
-        assert result == get_subtractData[2]
-
-    @pytest.mark.subtract
-    @allure.story("计算器-减法-错误用例")
-    def test_subtractMistake(self, get_calc, get_subtractMistakeData):
-        # calc = Calculator()
-        print("测试减法-错误用例")
-        result = round(get_calc.subtract(get_subtractMistakeData[0], get_subtractMistakeData[1]), 1)
-        assert result == get_subtractMistakeData[2]
-
-    # 乘法-测试用例参数化
-
-    @pytest.mark.multiply
-    @allure.story("计算器-乘法-正确用例")
-    def test_multiply(self, get_calc, get_multiplyData):
-        # calc = Calculator()
-        print("测试乘法-正确用例")
-        result = get_calc.multiply(get_multiplyData[0], get_multiplyData[1])
-        assert result == get_multiplyData[2]
-
-    @pytest.mark.multiply
-    @allure.story("计算器-乘法-错误用例")
-    def test_multiplyMistake(self, get_calc, get_multiplyMistakeData):
-        # calc = Calculator()
-        print("测试乘法-错误用例")
-        result = get_calc.multiply(get_multiplyMistakeData[0], get_multiplyMistakeData[1])
-        assert result == get_multiplyMistakeData[2]
-
     # 除法-测试用例参数化
+    @pytest.mark.run(order=7)
     @pytest.mark.divide
     @allure.story("计算器-除法-正确用例")
     def test_divide(self, get_calc, get_divideData):
@@ -99,6 +66,7 @@ class TestCalculator:
         result = round(get_calc.divide(get_divideData[0], get_divideData[1]), 1)
         assert result == get_divideData[2]
 
+    @pytest.mark.run(order=8)
     @pytest.mark.divide
     @allure.story("计算器-除法-错误用例")
     def test_divideMistake(self, get_calc, get_divideMistakeData):
@@ -110,3 +78,44 @@ class TestCalculator:
             print("测试除法-异常用例：被除数不能为0")
         else:
             print("测试除法-错误用例")
+
+    # 减法-测试用例参数化
+
+    @pytest.mark.run(order=3)
+    @pytest.mark.subtract
+    @allure.story("计算器-减法-正确用例")
+    def test_subtract(self, get_calc, get_subtractData):
+        # calc = Calculator()
+        print("测试减法-正确用例")
+        result = round(get_calc.subtract(get_subtractData[0], get_subtractData[1]), 1)
+        assert result == get_subtractData[2]
+
+    @pytest.mark.run(order=4)
+    @pytest.mark.subtract
+    @allure.story("计算器-减法-错误用例")
+    def test_subtractMistake(self, get_calc, get_subtractMistakeData):
+        # calc = Calculator()
+        print("测试减法-错误用例")
+        result = round(get_calc.subtract(get_subtractMistakeData[0], get_subtractMistakeData[1]), 1)
+        assert result == get_subtractMistakeData[2]
+
+    # 乘法-测试用例参数化
+
+    @pytest.mark.run(order=5)
+    @pytest.mark.multiply
+    @allure.story("计算器-乘法-正确用例")
+    def test_multiply(self, get_calc, get_multiplyData):
+        # calc = Calculator()
+        print("测试乘法-正确用例")
+        result = get_calc.multiply(get_multiplyData[0], get_multiplyData[1])
+        assert result == get_multiplyData[2]
+
+    @pytest.mark.run(order=6)
+    @pytest.mark.multiply
+    @allure.story("计算器-乘法-错误用例")
+    def test_multiplyMistake(self, get_calc, get_multiplyMistakeData):
+        # calc = Calculator()
+        print("测试乘法-错误用例")
+        result = get_calc.multiply(get_multiplyMistakeData[0], get_multiplyMistakeData[1])
+        assert result == get_multiplyMistakeData[2]
+
