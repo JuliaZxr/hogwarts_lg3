@@ -30,7 +30,6 @@
 ③从.yml文件获取测试用例数据的get_datas方法 和 8个参数化方法 可以放到conftest.py文件中
 
 """
-
 # 引用
 import pytest
 import allure
